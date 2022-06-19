@@ -1,6 +1,7 @@
 # python-core
 
 Recreate the card game called "War"
+
 Let's have a quick overview of the game: wikipedia.org/wiki/War_(card_game)
 
 Start of with 52 cards deck, and the after shuffling the deck, we split it up into two decks for 2 players
