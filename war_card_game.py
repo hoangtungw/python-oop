@@ -6,14 +6,13 @@ ranks = "2 3 4 5 6 7 8 9 10 J Q K A".split()
 class Deck:
     
     def __init__(self):
-        # print("Ordered deck: ")
+        print("Init ordered deck!")
         self.deck = [(rank, suite) for suite in suites for rank in ranks]
         # print(self.deck)
         
     def shuffle_deck(self):
         print("Shuffling deck...")
         random.shuffle(self.deck)
-        print(self.deck)
         return self.deck
         
     def split_deck(self, deck, hands = {}):        
@@ -47,12 +46,12 @@ class Player:
     def __repr__(self):
         return '{}: '.format(str(self.name)) + str(self.hand)  
     
-    def __len__(self):
-        return len(self.hand)
+    # def __len__(self):
+    #     return len(self.hand)
     
     def remove_war_cards(self):
         war_cards = []
-        if len(self.hand) > 3:
+        if len(self.hand.cards) > 3:
             for i in range(3): 
                 war_cards.append(self.hand.cards.pop())
         else:
@@ -60,7 +59,7 @@ class Player:
         return war_cards
         
     def still_has_cards(self):
-        return len(self.hand)
+        return len(self.hand.cards)
 
 
 def main():
@@ -71,8 +70,8 @@ def main():
         name = input("Please enter player's name: ")
         players[name] = []
     deck.split_deck(deck.shuffle_deck(), players)
-    for player in players.items():
-        print(player)
+    # for player in players.items():
+    #     print(player)
         
     ### Player in the game
     names = list(players.keys())
@@ -92,7 +91,6 @@ def main():
         print("Player {} shows card: {} ".format(play_2.name, p2_card))
         table_cards.append(p1_card)
         table_cards.append(p2_card)
-        # print(type(play_1.hand.pop_card()))
 
         if ranks.index(p1_card[0]) == ranks.index(p2_card[0]):
             print("A WAR!!! Two players need to remove 3 war cards!")
