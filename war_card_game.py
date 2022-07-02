@@ -56,6 +56,8 @@ class Player:
                 war_cards.append(self.hand.cards.pop())
         else:
             print("Player {} does not have enough cards and loses this round.".format(self.name))
+            war_cards.extend(self.hand.cards)
+            self.hand.cards.clear()
         return war_cards
         
     def still_has_cards(self):
@@ -109,8 +111,10 @@ def main():
         
     if play_1.still_has_cards():
         print("Player {} wins this game! Congratulate!!!".format(play_1.name))
+        play_1.hand.add_cards(table_cards)
     else: 
         print("Player {} wins this game! Congratulate!!!".format(play_2.name))
+        play_2.hand.add_cards(table_cards)
         
     print("The game ends after {} rounds with {} wars.".format(game_count, war_count))
     print("{} has {} cards and {} has {} cards.".format(play_1.name, len(play_1.hand), play_2.name, len(play_2.hand)))
