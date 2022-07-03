@@ -3,7 +3,12 @@ import random
 suites = ['\u2665', '\u2666', '\u2663', '\u2660']
 ranks = "2 3 4 5 6 7 8 9 10 J Q K A".split()
 
-class Deck:
+class Deck:    
+    """
+    It will be used to make a deck from suites and ranks.
+    This deck will be shuffled and divided into minor decks with
+    equal number of cards among the players.
+    """
     
     def __init__(self):
         print("Init ordered deck!")
@@ -21,7 +26,12 @@ class Deck:
                 hand.append(deck.pop())
         return hands
         
-class Hand(Deck):
+class Hand:
+    """
+    Each player has a Hand and can add or remove cards from that hand.
+    So we will perform the add and pop cards here.
+    """
+    
     def __init__(self, cards):
         self.cards = cards
     
@@ -38,6 +48,10 @@ class Hand(Deck):
         return self.cards.pop()
     
 class Player:
+    """
+    This class will have the name of the player.
+    It will also have the instance of Hand class object.
+    """
     
     def __init__(self, name, hand = []):
         self.name = name
@@ -45,9 +59,6 @@ class Player:
         
     def __repr__(self):
         return '{}: '.format(str(self.name)) + str(self.hand)  
-    
-    # def __len__(self):
-    #     return len(self.hand)
     
     def remove_war_cards(self):
         war_cards = []
@@ -87,6 +98,7 @@ def main():
     
     while play_1.still_has_cards() and play_2.still_has_cards():
         game_count += 1
+        print("Round {}: ".format(game_count))
         p1_card = play_1.hand.pop_card()
         print("Player {} shows card: {} ".format(play_1.name, p1_card))
         p2_card = play_2.hand.pop_card()
